@@ -16,10 +16,35 @@ class ClientDetails extends Component {
     balanceSubmit = e => {
         e.preventDefault();
 
-        console.log(this.state.balanceUpdateAmount);
+        const { client, firestore } = this.props;
+        const { balanceUpdateAmount } = this.state;
+        
+        // Client Update Object
+        const clientUpdate = {
+            balance: parseFloat(balanceUpdateAmount)
+        }
+
+        // Update Firestore
+
+        firestore.update({
+            collection: 'clients', doc: client.id
+        }, clientUpdate);
     }
 
     onChange= e => this.setState({ [e.target.name] : e.target.value});
+
+
+    //Delete Client
+
+    onDeleteClick = e => {
+        e.preventDefault();
+
+        const {client, firestore, history} = this.props;
+
+        firestore.delete({
+            collection: 'clients', doc: client.id
+        }).then(history.push('/'));
+    }
     
 
 
@@ -65,7 +90,7 @@ class ClientDetails extends Component {
                                 <Link to={`/client/${client.id}`} className='btn btn-dark'>
                                     Edit
                                 </Link>
-                                <button className='btn btn-danger'>
+                                <button onClick={this.onDeleteClick} className='btn btn-danger'>
                                     Delete
                                 </button>
                             </div>
@@ -84,7 +109,7 @@ class ClientDetails extends Component {
                                 <div className='col-md-4 col-sm-6'>
                                     <h4>Balance:{' '}<span className={classnames({
                                         'text-danger': client.balance > 0,
-                                        'text-successs': client.balance===0
+                                        'text-success': client.balance===0
                                     })}>${parseFloat(client.balance).toFixed(2)}</span>
                                     <small>
                                         <a href='#!' onClick={() => this.setState({
