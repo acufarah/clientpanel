@@ -87,7 +87,7 @@ class ClientDetails extends Component {
                         </div>
                         <div className='col-md-6'>
                             <div className='btn-group float-right'>
-                                <Link to={`/client/${client.id}`} className='btn btn-dark'>
+                            <Link to={`edit/${client.id}`} className='btn btn-dark'>
                                     Edit
                                 </Link>
                                 <button onClick={this.onDeleteClick} className='btn btn-danger'>
