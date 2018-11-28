@@ -1,3 +1,8 @@
+#ClientPanel
+
+This project uses React on the client side and uses Redux for state management. The styling was done using Bootstrap. It connects to Firebase and Firestore on the back end. It has a dashboard where clients' balance owed and client information is listed. It has a client details page where the full information is listed for each client. It has full create, read, update, and delete functions for client and balance owed information. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
