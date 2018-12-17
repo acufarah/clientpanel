@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Dashboard from './components/layout/Dashboard';
 import './App.css';
+import Register from './components/auth/Register';
 import AddClient from './components/clients/AddClient';
 import ClientDetails from './components/clients/ClientDetails';
 import EditClient from './components/clients/EditClient';
@@ -27,6 +28,7 @@ class App extends Component {
                 <Route exact path='/client/edit/:id' component={UserIsAuthenticated(EditClient)} />
                 <Route exact path='/login' component={UserIsNotAuthenticated(Login)} />
                 <Route exact path='/settings' component={UserIsAuthenticated(Settings)} />
+                <Route exact path='/register' component={UserIsNotAuthenticated(Register)} />
               </Switch>
             </div>
         </div>
